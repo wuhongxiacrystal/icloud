@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="icloud">
+<head>
+  <meta charset="UTF-8">
+  <title>icloud</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- <link href="http://cdn.bootcss.com/materialize/0.97.6/css/materialize.css" rel="stylesheet"> -->
+  <script src="./bower_components/angular/angular.js"></script>
+  <script src="./bower_components/angular-animate/angular-animate.js"></script>
+</head>
+<body ng-controller="main">
+  <div class="list">
+    <div class="list-title">
+      <div class="logo"></div>
+      <div class="title">提醒事项<span></span></div>
+      <div class="addlist" ng-click="addliebiao()"></div>
+    </div>
+    <ul>
+      <li class="plan"><span class="plan-icon"></span>已计划<div class="row-divider"></div></li>
+      <li ng-click="gaibian($index)" ng-class="{'list-active':v === currentqd}" class="qingdan" ng-repeat="v in qingdanlist">
+        <span class="{{v.color}}"></span>
+        <input type="text" class="white-text" value="v.name" ng-model="v.name" ng-blur="savedata()">
+        <div class="divider2"></div>
+      </li>
+    </ul>
+  </div>
+  <div class="detial">
+    <div class="sc-view">
+      <div class="view-left">
+        <span class="search"></span><input type="text" placeholder="搜索所有提醒">
+      </div>
+      <div class="view-right"></div>
+    </div>
+    <div class="sc-center {{currentqd.color}}" ng-show="currentqd">
+      <div class="center-title">
+        <span class="binding">{{currentqd.name}}</span>
+        <div class="options">
+          <input type="checkbox" id="xuanx" style="display:none">
+          <label for="xuanx" style="cursor:pointer" ng-init="op=false" ng-click="op=!op" >选项</label>
+           <div class="op-inner"  ng-show="op">
+              <div class="op-inn">
+                <input class="{{currentqd.color}}" type="text" ng-model="currentqd.name" value="{{currentqd.name}}">
+                <span>列表颜色</span>
+                <ul>
+                  <li><a href="javascript:;" class="purple"></a></li>
+                  <li><a href="javascript:;" class="green"></a></li>
+                  <li><a href="javascript:;" class="blue"></a></li>
+                  <li><a href="javascript:;" class="yellow"></a></li>
+                  <li><a href="javascript:;" class="brown"></a></li>
+                  <li><a href="javascript:;" class="pink"></a></li>
+                  <li><a href="javascript:;" class="orange"></a></li>
+                </ul>
+                <div class="set">
+                  <div class="delet" ng-click="shanchu(currentqd.id)">删除</div>
+                  <div class="before"  ng-click="op=!op">取消</div>
+                  <div class="line"></div>
+                  <div class="over">完成</div>
+                </div>
+              </div>
+           </div>
+        </div>
+      </div>
+
+      <div class="view-main">
+        <div class="divider-top"></div>
+        <div class="item-down">
+          <input type="checkbox" id="state" style="display:none">
+          <label for="state" class="states"></label>
+           已完成:2项
+         </div>
+        <div class="item" ng-show="v.state" ng-repeat="v in currentqd.shixiang">
+          <div class="control {{currentqd.color}}" ng-click="v.state=!v.state"></div>
+          <input type="text" name="name" value="{{v.name}}" ng-blur="savedata()">
+          <div class="divider-top"></div>
+          <div class="tado-detail {{currentqd.color}}">详细信息</div>
+        </div>
+        <div class="warpper">
+        <div class="items"ng-show="!v.state" ng-repeat="v in currentqd.shixiang">
+          <div class="controls {{currentqd.color}}" ng-click="v.state=!v.state"></div>
+          <input type="text" name="name" value="{{v.name}}" ng-blur="savedata()">
+          <div class="divider-tops"></div>
+        </div>
+        </div>
+        <div class="item">
+          <span class="" ng-click="addshixiang()">新项目...</span>
+          <div class="divider-tops"></div>
+          <div class="divider-bottom"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./js/jquery-1.12.0.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+</html>

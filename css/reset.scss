@@ -1,0 +1,50 @@
+@mixin back($i,$v) {
+  background: url(../image/packed-5.png);
+  background-repeat: no-repeat;
+  background-position: $i $v;
+}
+$big:960px;
+.stated{
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  @include back(-90px,-526px);
+}
+%input{
+  border: 0;
+  height: 44px;
+  padding: 0 5px;
+  font-size: 18px;
+  background: none;
+  width: 640px;
+}
+%focus{
+  border-right: 1px solid #e7e3e7;
+  border-left: 1px solid #e7e3e7;
+  background: #fff;
+  width: 635px;
+}
+.blue{
+  color: #18A6EF;
+  // @include back(-74px,-359px);
+}
+.green{
+  color: #63D739;
+}
+.orange{
+  color:#FF7D00;
+}
+.yellow{
+  color: #F7CB00;
+}
+.purple{
+  color: #CE75DE;
+}
+.pink{
+  color: #FF2C73;
+}
+.brown{
+  color: #A58663;
+}
